@@ -15,7 +15,7 @@ pipeline {
 
         stage('Docker image Build') {
             steps {
-                sh 'docker build -t myapp:${BUILD_NUMBER} .'
+                bat 'docker build -t myapp:${BUILD_NUMBER} .'
             }
         }
     }
