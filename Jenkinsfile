@@ -11,23 +11,23 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'docker build -t karthikapp:1.0 .'
+                bat 'docker build -t vskartdocker/karthikapp:2.0 .'
             }
         }
-        stage('Login') {
-            steps {
-                bat 'echo %DOCKERHUB_CREDENTIALS_PSW% | docker login -u %DOCKERHUB_CREDENTIALS_USR% --password-stdin'
-            }
-        }
+        // stage('Login') {
+        //     steps {
+        //         bat 'echo %DOCKERHUB_CREDENTIALS_PSW% | docker login -u %DOCKERHUB_CREDENTIALS_USR% --password-stdin'
+        //     }
+        // }
         stage('Push') {
             steps {
-                bat 'docker push %FULL_IMAGE_NAME%'
+                bat 'docker push vskartdocker/karthikapp:2.0'
             }
         }
     }
-    post {
-        always {
-            bat 'docker logout'
-        }
-    }
+    // post {
+    //     always {
+    //         bat 'docker logout'
+    //     }
+    // }
 }
