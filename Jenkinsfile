@@ -1,22 +1,33 @@
 pipeline {
     agent any
+
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+        IMAGE_NAME = "karthikeyaapp"
+        VERSION = "1"
+        FULL_IMAGE_NAME = "%DOCKERHUB_CREDENTIALS_USR%/%IMAGE_NAME%:%VERSION%"
+    }
+
     stages {
-        // stage('Clone') {
-        //     steps {
-        //        sh 'git clone https://github.com/adevops01/docker02.git'
-        //     }
-        // }
-
-        // stage('Build') {
-        //     steps {
-        //         sh 'cd docker02 && npm install'
-        //     }
-        // }
-
-        stage('Docker image Build') {
+        stage('Build') {
             steps {
-                bat 'docker build -t myapp:1.0 .'
+                bat 'docker build -t %FULL_IMAGE_NAME% docker/'
             }
+        }
+        stage('Login') {
+            steps {
+                bat 'echo %DOCKERHUB_CREDENTIALS_PSW% | docker login -u %DOCKERHUB_CREDENTIALS_USR% --password-stdin'
+            }
+        }
+        stage('Push') {
+            steps {
+                bat 'docker push %FULL_IMAGE_NAME%'
+            }
+        }
+    }
+    post {
+        always {
+            bat 'docker logout'
         }
     }
 }
