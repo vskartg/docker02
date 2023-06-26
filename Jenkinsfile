@@ -1,11 +1,11 @@
 pipeline {
     agent any
     stages {
-        stage('Clone') {
-            steps {
-               sh 'git clone https://github.com/adevops01/docker02.git'
-            }
-        }
+        // stage('Clone') {
+        //     steps {
+        //        sh 'git clone https://github.com/adevops01/docker02.git'
+        //     }
+        // }
 
         // stage('Build') {
         //     steps {
