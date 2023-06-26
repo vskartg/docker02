@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'docker build -t %FULL_IMAGE_NAME% .'
+                bat 'docker build -t karthikapp:1.0 .'
             }
         }
         stage('Login') {
