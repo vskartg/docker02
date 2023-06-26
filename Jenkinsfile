@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'docker build -t vskartdocker/karthikapp:2.0 .'
+                bat 'docker build -t vskartdocker/karthikapp:3.0 .'
             }
         }
         // stage('Login') {
@@ -21,7 +21,7 @@ pipeline {
         // }
         stage('Push') {
             steps {
-                bat 'docker push vskartdocker/karthikapp:2.0'
+                bat 'docker push vskartdocker/karthikapp:3.0'
             }
         }
     }
