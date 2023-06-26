@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'docker build -t %FULL_IMAGE_NAME% docker/'
+                bat 'docker build -t %FULL_IMAGE_NAME% .'
             }
         }
         stage('Login') {
