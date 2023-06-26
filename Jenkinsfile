@@ -7,11 +7,11 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                sh 'cd docker02 && npm install'
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         sh 'cd docker02 && npm install'
+        //     }
+        // }
 
         stage('Docker image Build') {
             steps {
